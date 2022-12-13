@@ -1,3 +1,4 @@
+let p;
 function setup() {
   createCanvas(500, 500);
 }
