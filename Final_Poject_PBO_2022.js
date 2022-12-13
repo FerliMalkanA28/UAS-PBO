@@ -1,6 +1,8 @@
 let p;
 function setup() {
   createCanvas(500, 500);
+  p = new Entity(10,20,250,250,color(0,100,150));
+  p.show();
 }
 
 function draw() {
@@ -13,14 +15,14 @@ function draw() {
   }
 }
 
-class Map{
-  constructor(width, heigth){
-    this._heigth=heigth;
-    this._width=width;
-  }
-  // Edit lagi Walid
+// class Map{
+//   constructor(width, heigth){
+//     this._heigth=heigth;
+//     this._width=width;
+//   }
+//   // Edit lagi Walid
   
-}
+// }
 
 class Entity{ 
   constructor(heigth, width, x, y){
@@ -28,7 +30,7 @@ class Entity{
     this._width=width;
     this._x=x;
     this._y=y;
-    // this._map=new Map;
+//     this._map=new Map;
   }
   
   show(){
