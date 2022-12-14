@@ -81,3 +81,43 @@ class Entity{
     }
   }  
 }
+
+class Monster extends Entity{
+    constructor(life, color, effect, type){
+        super();
+        this.life = life;
+        this.color = color;
+        this.effect = effect;
+        this.type = type;
+    }
+
+    moveRandom(){
+
+    }
+
+    saveScore(){
+
+    }
+}
+
+
+
+class Hero extends Entity{
+    constructor(life, score){
+        super();
+        this.life = life;
+        this.score = score;
+    }
+
+    increaseScore(){
+
+    }
+
+    calculateLife(){
+
+    }
+
+    saveScore(){
+
+    }
+}
