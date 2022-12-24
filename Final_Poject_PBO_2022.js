@@ -1,3 +1,9 @@
+var platforms = [];
+var player;
+var widthGame;
+var score = 0;
+var life = 3;
+
 class Map {
     constructor(posX) {
       this.rw = random(20, 70);
@@ -305,4 +311,46 @@ function data(){
   text("Untuk mendapatkan poin" ,player.location.x-500,50);
   text("Gunakan tombol kanan" ,player.location.x-500,70);
   text("Gunakan tombol kiri" ,player.location.x-500,90);
+}
+
+
+function setup() {
+    createCanvas(1500, 700);
+  
+    player = new Entity();
+    let countDistanceX = 0;
+    for (let i=0;i<14;i++) {
+        let platformTemp = new Map(countDistanceX);
+        platforms.push(platformTemp);
+        
+        countDistanceX = countDistanceX + platformTemp.rw + 130;
+    }
+    widthGame = countDistanceX-130;
+}
+  
+function draw() {
+    background('#F4EDDD');
+  
+    translate(-player.location.x + width / 2, 0);
+    
+    data();
+    
+    player.show();
+    player.applyVelocityGravity();
+    player.bounceEdges()
+    playerMovementInput();
+  
+    for(let i=0;i<platforms.length;i++){
+        platforms[i].show();
+        player.collisionCircleRect(platforms[i].rx, platforms[i].ry, platforms[i].rw, platforms[i].rh);
+    }
+    edgeLines();
+    
+    if (player.location.y == 0){
+        life--;
+        if(life < 0){
+            gameOver();
+        }
+    }
+    
 }
