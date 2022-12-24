@@ -200,3 +200,109 @@ class Entity {
 		}
 	}
 }
+
+class Level{
+    constructor(currentLevel, latestLevel, maxLevel){
+      this.currentLevel = currentLevel
+      this.latestLevel = latestLevel
+      this.maxLevel = maxLevel
+    }
+    setLevel(currentLevel){
+       if (this.currentLevel<this.latestLevel){
+        this.currentLevel++
+      }else if (this.currentLevel>this.latestLevel){
+        this.currentLevel = this.latestLevel
+      }
+    }
+    
+    getCurrentLevel(){
+      return this.currentLevel
+    }
+  }
+
+class Monster extends Entity{
+    constructor() {
+		this.location = createVector(width/2, 0);
+
+		this.radius = 26;
+	}
+    
+    show() {
+		noStroke();
+		fill('YELLOW');
+		ellipse(this.location.x, this.location.y, this.radius * 2, this.radius * 2);
+		textSize(20);
+	}
+}
+
+class Hero extends Entity{
+    constructor(x,y,score){
+    super(x,y)
+    this.pos = createVector(x, y);
+    this.r = 24;
+    this.speed = 3;
+    this.score = score;
+    }
+    
+    jalan(){
+      return this.move()
+    }
+  
+    increaseScore(){
+      return this.score++
+    }
+  }
+
+function gameOver(){
+    noStroke();
+    fill(0, 128);
+    rect(-1000, 0, width*3, height);
+    textAlign(CENTER, CENTER);
+    textSize(55);
+    fill('RED');
+    text("GAME OVER", player.location.x,300);
+    textSize(40);
+    fill('RED');
+    text("TRY AGAIN!",player.location.x,355);
+    textSize(20);
+    fill('Orange');
+    text("Your Score Is:",player.location.x,400);
+    text(score,player.location.x,450);
+    noLoop();
+  }
+
+function edgeLines(){
+	stroke('#E85243');
+	strokeWeight(80);
+	line(-39,0,-39,height);
+	line(widthGame+39,0,widthGame+39,height);
+	noStroke();
+}
+
+function playerMovementInput(){
+	if (keyIsDown(LEFT_ARROW))  {
+    	player.moveLeft();
+    	score++;
+ 	}
+  	if (keyIsDown(RIGHT_ARROW)) {
+    	player.moveRight();
+    	score++;
+  	}
+	if (keyIsDown(UP_ARROW)) {
+    	player.moveUp();
+  	}
+}
+
+function data(){
+  textAlign(CENTER, CENTER);
+  fill('green');
+  text("Score : " +score,player.location.x,50);
+  fill('red');
+  text("Nyawa : " +life,player.location.x,70);
+
+  textAlign(RIGHT, RIGHT);
+  fill('blue');
+  text("Untuk mendapatkan poin" ,player.location.x-500,50);
+  text("Gunakan tombol kanan" ,player.location.x-500,70);
+  text("Gunakan tombol kiri" ,player.location.x-500,90);
+}
